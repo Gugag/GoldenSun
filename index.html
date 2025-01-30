@@ -20,29 +20,17 @@
             height: 100%;
             border: none;
         }
-        .mobile-view {
-            display: none;
-            text-align: center;
-            font-size: 18px;
-            padding: 20px;
-        }
     </style>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
             if (isMobile) {
-                document.getElementById("pdf-viewer").style.display = "none";
-                document.getElementById("mobile-message").style.display = "block";
+                window.location.href = "GoldenSun_Menu.pdf";
             }
         });
     </script>
 </head>
 <body>
-    <div id="pdf-viewer">
-        <iframe src="GoldenSun_Menu.pdf" allowfullscreen></iframe>
-    </div>
-    <div id="mobile-message" class="mobile-view">
-        <p>Your device does not support embedded PDFs. <a href="GoldenSun_Menu.pdf">Click here</a> to view the menu.</p>
-    </div>
+    <iframe src="GoldenSun_Menu.pdf" allowfullscreen></iframe>
 </body>
 </html>
