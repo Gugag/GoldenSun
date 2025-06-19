@@ -10,50 +10,39 @@
             padding: 0;
             width: 100%;
             height: 100%;
-            overflow: hidden; /* Prevents scrollbars on the body */
+            overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
-            position: relative; /* Needed for positioning the fixed button relative to the body */
+            position: relative;
         }
+        
         iframe {
             width: 100%;
             height: 100%;
             border: none;
-            /* Ensure the iframe itself is behind the button */
-            position: absolute; /* Changed from default to help with z-index */
+            position: absolute;
             top: 0;
             left: 0;
-            z-index: 1; /* Puts the iframe behind the button */
-        }
-
-        /* Container for the fixed button to ensure it's always on top */
-        .button-overlay {
-            position: fixed; /* Fixes this container to the viewport */
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1000; /* Ensures this container is above the iframe */
-            pointer-events: none; /* Allows clicks to pass through to the iframe by default */
+            z-index: 1;
         }
 
         .fixed-button {
-            position: absolute; /* Positioned relative to .button-overlay */
-            top: 20px; /* Default position for larger screens */
-            right: 20px; /* Default position for larger screens */
-            z-index: 1001; /* Higher than .button-overlay itself just to be safe */
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999; /* Very high z-index to ensure it's on top */
             width: 130px;
             height: 130px;
             padding: 10px;
-            background-color: #4285F4; /* Google blue color for the button background */
+            background-color: #4285F4;
             color: white;
             border: none;
             border-radius: 50%;
             cursor: pointer;
             font-size: 16px;
             font-weight: bold;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.4);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -61,41 +50,56 @@
             text-align: center;
             line-height: 1.2;
             gap: 8px;
-            pointer-events: all; /* Re-enable pointer events for the button itself */
+            transition: all 0.3s ease;
+            user-select: none;
         }
+        
         .fixed-button:hover {
             background-color: #3367D6;
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.5);
         }
+        
+        .fixed-button:active {
+            transform: scale(0.95);
+        }
+        
         .google-logo {
             width: 38px;
             height: 38px;
-            filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.3));
+            filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.3));
+        }
+
+        .button-text {
+            font-family: 'Arial', sans-serif;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
         }
 
         /* Media Queries for Responsive Positioning */
         @media (max-width: 768px) {
             .fixed-button {
-                width: 110px; /* Slightly smaller button for smaller screens */
+                width: 110px;
                 height: 110px;
-                font-size: 14px; /* Smaller font size */
-                top: 15px; /* Adjust top position */
-                right: 15px; /* Adjust right position */
+                font-size: 14px;
+                top: 15px;
+                right: 15px;
             }
             .google-logo {
-                width: 30px; /* Smaller logo for smaller screens */
+                width: 30px;
                 height: 30px;
             }
         }
+        
         @media (max-width: 480px) {
             .fixed-button {
-                width: 90px; /* Even smaller button for small phones */
+                width: 90px;
                 height: 90px;
-                font-size: 12px; /* Even smaller font size */
-                top: 10px; /* Closer to the top */
-                right: 10px; /* Closer to the right */
+                font-size: 12px;
+                top: 10px;
+                right: 10px;
             }
             .google-logo {
-                width: 25px; /* Even smaller logo */
+                width: 25px;
                 height: 25px;
             }
         }
@@ -110,16 +114,14 @@
 <body>
     <iframe src="GoldenSun_Menu.pdf" allowfullscreen></iframe>
 
-    <div class="button-overlay">
-        <button class="fixed-button" onclick="rateUs()">
-            <span>Please Rate Us!</span>
-            <svg class="google-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
-                <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.62-6.62C34.46 3.73 29.6 2 24 2 14.83 2 7.07 7.74 3.74 15.63l7.97 6.16C13.56 16.5 18.2 12.5 24 12.5z"/>
-                <path fill="#34A853" d="M46.7 24.5c0-1.85-.16-3.6-.47-5.28H24v10.5h12.51c-.65 3.32-2.58 6.09-5.18 7.95l7.97 6.16C43.5 39.52 46.7 33.3 46.7 24.5z"/>
-                <path fill="#4285F4" d="M24 46c5.78 0 10.74-1.95 14.32-5.32l-7.97-6.16c-2.48 1.62-5.6 2.61-9.35 2.61-5.78 0-10.74-3.13-13.4-7.8l-7.97 6.16C7.07 40.26 14.83 46 24 46z"/>
-                <path fill="#FBBC05" d="M10.6 28.5c-.75-2.2-1.2-4.57-1.2-7s.45-4.8 1.2-7L2.63 8.35C.94 12.22 0 17.06 0 21.5s.94 9.28 2.63 13.15L10.6 28.5z"/>
-            </svg>
-        </button>
-    </div>
+    <button class="fixed-button" onclick="rateUs()">
+        <span class="button-text">Please Rate Us!</span>
+        <svg class="google-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+            <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.62-6.62C34.46 3.73 29.6 2 24 2 14.83 2 7.07 7.74 3.74 15.63l7.97 6.16C13.56 16.5 18.2 12.5 24 12.5z"/>
+            <path fill="#34A853" d="M46.7 24.5c0-1.85-.16-3.6-.47-5.28H24v10.5h12.51c-.65 3.32-2.58 6.09-5.18 7.95l7.97 6.16C43.5 39.52 46.7 33.3 46.7 24.5z"/>
+            <path fill="#4285F4" d="M24 46c5.78 0 10.74-1.95 14.32-5.32l-7.97-6.16c-2.48 1.62-5.6 2.61-9.35 2.61-5.78 0-10.74-3.13-13.4-7.8l-7.97 6.16C7.07 40.26 14.83 46 24 46z"/>
+            <path fill="#FBBC05" d="M10.6 28.5c-.75-2.2-1.2-4.57-1.2-7s.45-4.8 1.2-7L2.63 8.35C.94 12.22 0 17.06 0 21.5s.94 9.28 2.63 13.15L10.6 28.5z"/>
+        </svg>
+    </button>
 </body>
 </html>
