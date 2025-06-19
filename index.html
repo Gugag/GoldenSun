@@ -10,27 +10,109 @@
             padding: 0;
             width: 100%;
             height: 100%;
-            overflow: hidden;
+            overflow: hidden; /* Prevents scrollbars on the body */
             display: flex;
             justify-content: center;
             align-items: center;
+            position: relative; /* Needed for positioning the fixed button relative to the body */
         }
         iframe {
             width: 100%;
             height: 100%;
             border: none;
         }
+        .fixed-button {
+            position: fixed; /* Makes the button stay in place */
+            top: 20px; /* Default position for larger screens */
+            right: 20px; /* Default position for larger screens */
+            z-index: 1000; /* Ensures the button is on top of other content */
+            width: 130px;
+            height: 130px;
+            padding: 10px;
+            background-color: #4285F4; /* Google blue color for the button background */
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            line-height: 1.2;
+            gap: 8px;
+        }
+        .fixed-button:hover {
+            background-color: #3367D6;
+        }
+        .google-logo {
+            width: 38px;
+            height: 38px;
+            filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.3));
+        }
+
+        /* Media Queries for Responsive Positioning */
+
+        /* For screens smaller than 768px (common for tablets in portrait and phones) */
+        @media (max-width: 768px) {
+            .fixed-button {
+                width: 110px; /* Slightly smaller button for smaller screens */
+                height: 110px;
+                font-size: 14px; /* Smaller font size */
+                top: 15px; /* Adjust top position */
+                right: 15px; /* Adjust right position */
+            }
+            .google-logo {
+                width: 30px; /* Smaller logo for smaller screens */
+                height: 30px;
+            }
+        }
+
+        /* For even smaller screens, like phones in portrait */
+        @media (max-width: 480px) {
+            .fixed-button {
+                width: 90px; /* Even smaller button for small phones */
+                height: 90px;
+                font-size: 12px; /* Even smaller font size */
+                top: 10px; /* Closer to the top */
+                right: 10px; /* Closer to the right */
+            }
+            .google-logo {
+                width: 25px; /* Even smaller logo */
+                height: 25px;
+            }
+        }
     </style>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
             if (isMobile) {
+                // On mobile, your original code redirects directly to the PDF.
+                // If you want the button to appear on mobile as well, you'd need to
+                // modify this logic or provide a separate mobile-optimized view.
                 window.location.href = "GoldenSun_Menu.pdf";
             }
         });
+
+        function rateUs() {
+            // Replace with your actual Google Maps URL
+            window.open('https://www.google.com/maps', '_blank');
+        }
     </script>
 </head>
 <body>
     <iframe src="GoldenSun_Menu.pdf" allowfullscreen></iframe>
+    <button class="fixed-button" onclick="rateUs()">
+        <span>Please Rate Us!</span>
+        <svg class="google-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+            <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.62-6.62C34.46 3.73 29.6 2 24 2 14.83 2 7.07 7.74 3.74 15.63l7.97 6.16C13.56 16.5 18.2 12.5 24 12.5z"/>
+            <path fill="#34A853" d="M46.7 24.5c0-1.85-.16-3.6-.47-5.28H24v10.5h12.51c-.65 3.32-2.58 6.09-5.18 7.95l7.97 6.16C43.5 39.52 46.7 33.3 46.7 24.5z"/>
+            <path fill="#4285F4" d="M24 46c5.78 0 10.74-1.95 14.32-5.32l-7.97-6.16c-2.48 1.62-5.6 2.61-9.35 2.61-5.78 0-10.74-3.13-13.4-7.8l-7.97 6.16C7.07 40.26 14.83 46 24 46z"/>
+            <path fill="#FBBC05" d="M10.6 28.5c-.75-2.2-1.2-4.57-1.2-7s.45-4.8 1.2-7L2.63 8.35C.94 12.22 0 17.06 0 21.5s.94 9.28 2.63 13.15L10.6 28.5z"/>
+        </svg>
+    </button>
 </body>
 </html>
