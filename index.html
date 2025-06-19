@@ -87,16 +87,6 @@
         }
     </style>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-            if (isMobile) {
-                // On mobile, your original code redirects directly to the PDF.
-                // If you want the button to appear on mobile as well, you'd need to
-                // modify this logic or provide a separate mobile-optimized view.
-                window.location.href = "GoldenSun_Menu.pdf";
-            }
-        });
-
         function rateUs() {
             // Replace with your actual Google Maps URL
             window.open('https://www.google.com/maps', '_blank');
