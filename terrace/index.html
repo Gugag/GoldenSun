@@ -1,37 +1,36 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Golden Sun Menu</title>
+    <title>Golden Sun — Terrace Menu</title>
     <style>
         body, html {
             margin: 0;
             padding: 0;
             width: 100%;
-            height: 100%;
-            overflow: auto; /* Allow scrolling */
-            position: relative;
-            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-            touch-action: manipulation; /* Optimize touch interactions */
-        }
-        
-        iframe {
-            width: 100%;
-            height: 100vh; /* Full viewport height */
-            border: none;
-            display: block;
-            z-index: 1;
-            -webkit-overflow-scrolling: touch; /* Enable smooth scrolling on iOS */
-            overflow: auto; /* Enable scrolling within iframe */
+            background: #000;               /* matches the dark terrace pages */
+            -webkit-overflow-scrolling: touch;
+            touch-action: manipulation;
         }
 
+        .pages {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .pages img {
+            display: block;
+            width: 100%;                    /* fit page to screen width */
+            height: auto;
+            border: 0;
+        }
+
+        /* ---- Please Rate Us! button ---- */
         .fixed-button {
             position: fixed;
             top: 20px;
             right: 20px;
-            z-index: 9999; /* Very high z-index to ensure it's on top */
+            z-index: 9999;
             width: 130px;
             height: 130px;
             padding: 10px;
@@ -53,66 +52,47 @@
             transition: all 0.3s ease;
             user-select: none;
         }
-        
         .fixed-button:hover {
             background-color: #3367D6;
             transform: scale(1.05);
             box-shadow: 0 8px 16px rgba(0,0,0,0.5);
         }
-        
-        .fixed-button:active {
-            transform: scale(0.95);
-        }
-        
+        .fixed-button:active { transform: scale(0.95); }
         .google-logo {
-            width: 38px;
-            height: 38px;
+            width: 38px; height: 38px;
             filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.3));
         }
-
         .button-text {
             font-family: 'Arial', sans-serif;
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
         }
 
-        /* Media Queries for Responsive Positioning */
         @media (max-width: 768px) {
-            .fixed-button {
-                width: 90px;
-                height: 90px;
-                font-size: 14px;
-                top: 15px;
-                right: 15px;
-            }
-            .google-logo {
-                width: 30px;
-                height: 30px;
-            }
+            .fixed-button { width: 90px; height: 90px; font-size: 14px; top: 15px; right: 15px; }
+            .google-logo { width: 30px; height: 30px; }
         }
-        
         @media (max-width: 480px) {
-            .fixed-button {
-                width: 70px;
-                height: 70px;
-                font-size: 12px;
-                top: 10px;
-                right: 10px;
-            }
-            .google-logo {
-                width: 25px;
-                height: 25px;
-            }
+            .fixed-button { width: 70px; height: 70px; font-size: 12px; top: 10px; right: 10px; }
+            .google-logo { width: 25px; height: 25px; }
         }
     </style>
     <script>
         function rateUs() {
-            // Replace with your actual Google Maps URL
             window.open('https://maps.app.goo.gl/586wG5xmZBjfeAZf7', '_blank');
         }
     </script>
 </head>
 <body>
-    <iframe src="Terrace_Menu.pdf" allowfullscreen scrolling="yes"></iframe>
+
+    <div class="pages">
+        <img src="menu/page-01.jpg" alt="Terrace Menu page 1" fetchpriority="high">
+        <img src="menu/page-02.jpg" alt="Terrace Menu page 2" loading="lazy">
+        <img src="menu/page-03.jpg" alt="Terrace Menu page 3" loading="lazy">
+        <img src="menu/page-04.jpg" alt="Terrace Menu page 4" loading="lazy">
+        <img src="menu/page-05.jpg" alt="Terrace Menu page 5" loading="lazy">
+        <img src="menu/page-06.jpg" alt="Terrace Menu page 6" loading="lazy">
+        <img src="menu/page-07.jpg" alt="Terrace Menu page 7" loading="lazy">
+    </div>
 
     <button class="fixed-button" onclick="rateUs()">
         <span class="button-text">Please Rate Us!</span>
@@ -123,5 +103,6 @@
             <path fill="#FBBC05" d="M10.6 28.5c-.75-2.2-1.2-4.57-1.2-7s.45-4.8 1.2-7L2.63 8.35C.94 12.22 0 17.06 0 21.5s.94 9.28 2.63 13.15L10.6 28.5z"/>
         </svg>
     </button>
+
 </body>
 </html>
